@@ -10,7 +10,7 @@ inputs=$1
 pip install nltk==3.4.5
 
 # Remove doc tag and title
-python ./cleanup_file.py --data=$inputs --output_suffix='.1'
+python3 ./cleanup_file.py --data=$inputs --output_suffix='.1'
 
 # Further clean up files
 for f in ${inputs}; do
@@ -18,16 +18,16 @@ for f in ${inputs}; do
 done
 
 # Sentence segmentation
-python ./do_sentence_segmentation.py --data=$inputs --input_suffix='.2' --output_suffix='.3'
+python3 ./do_sentence_segmentation.py --data=$inputs --input_suffix='.2' --output_suffix='.3'
 
 mkdir -p ./results
 
 # Train/Eval seperation
-python ./seperate_test_set.py --data=$inputs --input_suffix='.3' --output_suffix='.4' --num_test_articles=10000 --test_output='./results/eval'
+python3 ./seperate_test_set.py --data=$inputs --input_suffix='.3' --output_suffix='.4' --num_test_articles=10000 --test_output='./results/eval'
 
 ## Choose file size method or number of packages by uncommenting only one of the following do_gather options
 # Gather into fixed size packages
-python ./do_gather.py --data=$inputs --input_suffix='.4' --block_size=26.92 --out_dir='./results'
+python3 ./do_gather.py --data=$inputs --input_suffix='.4' --block_size=26.92 --out_dir='./results'
 
 # Gather into fixed number of packages
 #NUM_PACKAGES=512
