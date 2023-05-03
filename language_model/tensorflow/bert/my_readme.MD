@@ -24,4 +24,6 @@ for f in results/par*; do b=`basename $f`; echo $f; echo $b; python3 create_pret
    --input_file=$f   --output_file=tfrecord/$b --vocab_file=wiki/vocab.txt   \
    --do_lower_case=True    --max_seq_length=512    --max_predictions_per_seq=76 \
    --masked_lm_prob=0.15    --random_seed=12345    --dupe_factor=10; done
+   
+python3 create_pretraining_data.py  --input_file=./results/eval.txt --output_file=./eval_intermediate --vocab_file=./wiki/vocab.txt --do_lower_case=True --max_seq_length=512 --max_predictions_per_seq=76 --masked_lm_prob=0.15 --random_seed=12345 --dupe_factor=10
 ```
